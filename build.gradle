@@ -1,0 +1,33 @@
+apply plugin: 'java'
+apply plugin: 'eclipse'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile 'io.appium:java-client:3.2.0'
+    compile 'junit:junit:4.12'
+}
+
+sourceSets {
+    test{
+        java{
+            srcDirs = ['src/']
+            
+        }
+        resources{
+            srcDirs = ['properties']
+        }
+    }
+}
+
+test{
+    useJUnit()
+    testLogging {
+        exceptionFormat = 'full'
+        events 'started', 'passed', 'failed'
+        showStandardStreams = true
+    }
+    systemProperties = System.getProperties()
+}
